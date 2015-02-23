@@ -57,6 +57,22 @@ void DeleteList(node ** list){
 
 }
 
+void InsertNth(node ** head, int n, int i){
+	if(*head != NULL){
+		if(n>0){
+			InsertNth(&(*head)->next,n-1,i);
+		}else{
+			node * newNode;
+			newNode = (node*)malloc(sizeof(node));
+			newNode->x = i;
+			newNode->next = *head;
+			*head = newNode;
+		}	
+		
+	}
+
+}
+
 int Pop(node ** head){
 	int out = (*head)->x;
 	node * old = *head;
@@ -79,7 +95,10 @@ int main(){
 	insert(&root,5);
 	insert(&root,6);
 
-	printf("Pop: %d\n",Pop(&root));
+	InsertNth(&root,4,10);
+	InsertNth(&root,0,-1);
+	InsertNth(&root,2,44);
+
 	printLinkedList(root);
 	
 
